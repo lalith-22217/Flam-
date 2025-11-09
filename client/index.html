@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Header -->
+            <div class="sidebar-header">
+                <h1 class="app-title">Canvas Lab</h1>
+                <p class="app-subtitle">Real-time collaboration</p>
+            </div>
+
+            <!-- Room Section -->
+            <div class="room-section">
+                <label class="room-label">Room:</label>
+                <div class="room-input-group">
+                    <input type="text" id="roomInput" class="room-input" placeholder="room name" value="default">
+                    <button class="join-btn" id="joinBtn">Join</button>
+                </div>
+            </div>
+
+            <!-- Tools Section -->
+            <div class="tool-section">
+                <h3 class="section-title">Tools</h3>
+                <div class="tool-buttons">
+                    <button class="tool-btn active" data-tool="brush" title="Brush (B)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        </svg>
+                        <span>Brush</span>
+                    </button>
+                    <button class="tool-btn" data-tool="eraser" title="Eraser (E)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 20H7L3 16l8-8 9 9v3z"></path>
+                            <path d="M7 20l5-5"></path>
+                        </svg>
+                        <span>Eraser</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Color Picker -->
+            <div class="color-section">
+                <label class="color-label">Color</label>
+                <input type="color" id="colorPicker" class="color-picker" value="#000000">
+            </div>
+
+            <!-- Stroke Width -->
+            <div class="width-section">
+                <label class="width-label">Width</label>
+                <div class="width-control">
+                    <input type="range" id="strokeWidth" class="width-slider" min="1" max="50" value="4" step="1">
+                    <span class="width-value" id="strokeValue">4</span>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-buttons">
+                <button class="action-btn primary" id="undoBtn" title="Undo (Ctrl+Z)" disabled>Undo</button>
+                <button class="action-btn secondary" id="redoBtn" title="Redo (Ctrl+Y)" disabled>Redo</button>
+                <button class="action-btn secondary" id="clearBtn" title="Clear Canvas">Clear</button>
+            </div>
+
+            <!-- Users Section -->
+            <div class="users-section">
+                <h3 class="section-title">Users</h3>
+                <div class="users-list" id="usersList">
+                    <!-- Users will be added dynamically -->
+                </div>
+            </div>
+
+            <!-- Footer Stats -->
+            <div class="sidebar-footer">
+                <div class="stat-item">FPS: <span id="fpsCounter">0</span></div>
+                <div class="stat-item">Latency: <span id="latencyCounter">--</span> ms</div>
+            </div>
+        </aside>
+
+        <!-- Main Canvas Area -->
+        <main class="main-area">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="room-info">
+                    <span class="room-label-top">Room: <span id="currentRoom">default</span></span>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-text" id="statusText">Connected</span>
+                    <span class="user-id" id="userId">(aKRFNPav9FRhnkmQAAL)</span>
+                </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="canvas-wrapper">
+                <canvas id="drawingCanvas"></canvas>
+                <div class="cursors-layer" id="cursorsLayer">
+                    <!-- Remote cursors will be added dynamically -->
+                </div>
+                <div class="canvas-tip">Tip: open two tabs to test collaboration</div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="canvas.js"></script>
+    <script src="websocket.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
