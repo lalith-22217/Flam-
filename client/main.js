@@ -45,7 +45,8 @@ let lastPingSent = 0;
 let currentLatency = 0;
 
 // Initialize WebSocket connection
-const wsUrl = `ws://${window.location.hostname}:${window.location.port || 3000}`;
+const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const wsUrl = `${protocol}//${window.location.host}`;
 wsManager.connect(wsUrl);
 
 // WebSocket event handlers
